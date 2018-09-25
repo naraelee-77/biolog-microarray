@@ -1,0 +1,17 @@
+This is a Shiny app for Biolog Microarray Analysis. 
+
+First, run these lines on the console for R or RStudio
+> install.packages("shiny")
+> install.packages("DT")
+> install.packages("opm") // probably will not work
+
+To run the program, press "Run App" on either server.R or ui.R. Most often it works better when opened in browser. Depending on the current tab (Regular Analysis, Kinetic Analysis, OPM Conversion) It will prompt for file inputs, numeric inputs, checkboxes, etc. 
+
+Regular Analysis takes an input file and compares data between patients and controls for 96 wells (8 for trp option). It outputs mean values for each of the two groups, unadjusted p value from a two-sample t-test, and normalized values for all the input data. Test with "plate1_replicate_test.csv" with all the default values.
+
+Kinetic Analysis takes an input file for one patient and an input file for one control, each of which have data for 96 wells over a course of 0 to 24 hours. It outputs a compound line graph with underfill for each well. Test with "plate1_kinetic_ptnt_test.csv" for the patient file and "plate1_kinetic_ctrl_test.csv" for the control file, with the default values.
+
+The trp option for Kinetic Analysis only requires data for 8 wells. The control data must be in the specific format for 8 wells (representing control averages) rather than 96. Each 96 well plate tested with tryptophan contains four subjects, so trp gives the option of choosing which of the four subjects to analyze. If "Averages File" is chosen, the data must be in the same format as the control. Test by checking trp, and using "trp_control_avg.csv" for the control file. If "Averages File" is selected, test with "trp_patient_avg.csv" for the patient file, and if any other option is selected, test with "trp_patient_columns.csv" for the patient file.
+
+OPM Conversion will not work unless the opm package can be installed. Currently ignore it.
+
